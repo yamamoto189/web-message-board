@@ -32,16 +32,15 @@ if(isset($_POST['message'])){
 }
 if($is_valid_message&&$input_message===''){
     $is_valid_message=false;
-
+}
 if($is_valid_message&&mb_strlen($input_message)>1000){
     $is_valid_message=false;
 }
 // 投稿をデータベースへ保存する処理
 if($is_valid_author_name&&$is_valid_message){
     if($input_author_name===''){
-        $input_author_name='匿名さん';
+       $input_author_name='匿名さん';
     }
-}
  // INSERT クエリを作成する
  // :author_name、:message はプレースホルダという。
  //後で $stmt->bindValue を使用して値をセットするときのニックネームのようなもの。
@@ -62,4 +61,3 @@ $stmt->bindValue(':message',$input_message,PDO::PARAM_STR);
 
 header('Location: /');
 exit();
-?>
